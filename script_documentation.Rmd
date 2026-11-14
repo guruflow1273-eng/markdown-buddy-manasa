@@ -1,0 +1,33 @@
+
+title: "Iris Analysis Script Documentation"
+author: "Manasa Alegala"
+output: html_document
+---
+
+# Purpose
+This document provides technical documentation for `iris_analysis.R`. The script is designed to load the classic Iris dataset, perform basic exploratory data analysis, and generate a visualization to understand the separation between species.
+
+## Inputs
+The script requires no external data files. It uses the **built-in `iris` dataset** provided by base R, which contains 150 observations across 3 species of Iris flowers with 4 numeric features (Sepal.Length, Sepal.Width, Petal.Length, Petal.Width).
+
+## Outputs
+1. **Console Output:** A summary table showing the mean, median, and quartiles for each numeric feature.
+2. **Visualization:** A scatter plot (`ggplot2`) saved to the working directory as `iris_scatter.png`.
+
+## Code Examples
+
+### 1. Loading Data
+```{r}
+# Load the built-in dataset
+data(iris)
+
+Generating Summary Statistics
+# Calculate mean of Sepal Length grouped by Species
+aggregate(Sepal.Length ~ Species, data = iris, FUN = mean)
+
+Plotting the Data
+# Create a scatter plot using ggplot2
+library(ggplot2)
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
+  labs(title = "Iris Sepal Dimensions", x = "Sepal Length", y = "Sepal Width")
